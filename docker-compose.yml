@@ -1,0 +1,44 @@
+services:
+  web:
+    build: .
+    container_name: grocery-web
+
+    ports:
+      - "8080:80"
+
+    depends_on:
+      - mysql
+
+    environment:
+      DB_HOST: mysql
+      DB_NAME: grocery
+      DB_USER: "YOUR_DB_USER_HERE"
+      DB_PASSWORD: "YOUR_DB_PASSWORD_HERE"
+
+    volumes:
+      - ./app:/var/www/html
+
+    restart: unless-stopped
+
+  mysql:
+    image: mysql:8.0
+    container_name: grocery-db
+
+    restart: unless-stopped
+
+    environment:
+      MYSQL_ROOT_PASSWORD: "YOUR_ROOT_PASSWORD_HERE"
+      MYSQL_DATABASE: grocery
+      MYSQL_USER: "YOUR_DB_USER_HERE"
+      MYSQL_PASSWORD: "YOUR_DB_PASSWORD_HERE"
+
+    ports:
+      - "3307:3306"
+
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./database/grocery.sql:/docker-entrypoint-initdb.d/grocery.sql
+
+volumes:
+  mysql-data:
+
