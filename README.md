@@ -193,6 +193,7 @@ The containerized application is deployed into a local multi-node capable Kubern
 
 # 📂 Repository Structure
 
+```text
 Dockerized-Grocery-Store/
 │
 ├── app/
@@ -260,6 +261,7 @@ Dockerized-Grocery-Store/
 ├── README.md
 ├── LICENSE
 └── .gitignore
+```
 ---
 
 # 🚀 Getting Started
